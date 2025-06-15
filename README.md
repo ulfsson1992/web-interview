@@ -1,53 +1,46 @@
-# Sellpy web interview
+# Sellpy Web Interview
 
-Welcome to Sellpy's web interview repo!
+Welcome to Hugo's Sellpy Web Interview repository!
+
 ## Prerequisites
 
-NodeJS - if you don't already have it installed, check out [nvm](https://github.com/nvm-sh/nvm).
+- **Node.js** – If you don’t already have it installed, consider using [nvm](https://github.com/nvm-sh/nvm) for easier version management.
 
-## Getting started
-Fork the repository (see top-right button on GitHub) and clone the fork to your computer.
-### To start the backend:
+## Getting Started
 
- - Navigate to the backend folder
- - Run `npm ci`
- - Run `npm start`
+### Starting the Backend
 
-### To start the frontend:
+1. Navigate to the `backend` folder.
+2. Run `npm ci`.
+3. By default, the backend will use an **in-memory MongoDB** if `USE_INMEMORY_DB=true` is set in the `.env` file.  
+   If you'd prefer to use an external database, set this value to `false` and configure the `MONGO_URI` accordingly.
+4. Run `npm start`.
 
- - Navigate to the frontend folder
- - Run `npm ci`
- - Run `npm start`
+### Starting the Frontend
 
- A browsertab will automatically open and load the app.
+1. Navigate to the `frontend` folder.
+2. Run `npm ci`.
+3. Run `npm start`.
 
-### Development set-up
-If you don't have a favorite editor we highly recommend [VSCode](https://code.visualstudio.com). We've also had some ESLint rules set up which will help you catch bugs etc. If you're using VSCode, install the regular [ESLint plugin](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) and you should be good to go!
+A browser tab will automatically open and load the app.
 
-You can open the root folder in one workspace, or `/frontend` and `/backend` in seperate workspaces - both should work fine.
+## Changelog
 
-Check `.nvmrc` to see what node version is required to run the project. Just run `nvm use` if you have `nvm` installed. Later versions of node might work fine as well, but probably not earlier versions.
+### Backend
 
-For those of you using Prettier (not a requirement), there's an .prettierrc file to ensure no unnecessary changes to the existing code. It should be picked up automatically by Prettier.
+- Updated to support both in-memory and persistent MongoDB storage.
+- Uses GraphQL to serve data.
+- `dueBy` and `completed` fields have been added to the Todos.
 
-## Assignment
-Your assignment is to improve this todo list application. At the moment the application is simple and can only create and remove todos.
-As is, nothing is persisted in the server. As a result all state is cleared when refreshing the page!
-Below follows one main task and 4 additional tasks. Your assignment is to complete the main task together with at least 2 out of 4 of the additional tasks.
-If you feel constrained by time (which is totally fine!), prioritize quality over quantity.
+### Frontend
 
-### Main Task
-Persist the todo lists on the server. Persisting in a database is not required. (Simple js structures on the server is fine). If you do go for an actual DB (again not required), be sure to include instructions of how to get it up and running.
+- Now fetches data from the backend using GraphQL.
+- Implements internal caching, with mutations updating the cache directly to minimize unnecessary queries.
+- Supports adding todo lists and todos, with automatic state saving after changes.
+- Added the ability to mark todos as complete and set a due date (`dueBy`).
+- Todo lists display aggregated data about the progress of their todos.
 
-### Additional tasks
-- Don't require users to press save when an item is added/edited in the todo list. (Autosave functionality)
-- Make it possible to indicate that a todo is completed.
-- Indicate that a todo list is completed if all todo items within are completed.
-- Add a date for completion to todo items. Indicate how much time is remaining or overdue.
+## Coming Soon...
 
-## Submission
-Before submitting, read through all changes one last time - code quality matters!
-
-If you have developed without ESLint set up, run `npm run lint` in both `/backend` and `/frontend` and fix any errors/warnings.
-
-Send a link to your forked repository to your contact at Sellpy. Don't forget to mention which tasks you completed.
+- User authentication with per-user todo visibility.
+- Logging for all mutations and exceptions.
